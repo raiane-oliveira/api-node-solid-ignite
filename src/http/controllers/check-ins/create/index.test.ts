@@ -1,6 +1,6 @@
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, it } from 'vitest'
 import request from 'supertest'
 import { prisma } from '@/lib/prisma'
 
@@ -30,8 +30,8 @@ describe('Create Check-in (e2e)', () => {
       .post(`/gyms/${gym.id}/check-ins`)
       .set('Authorization', `Bearer ${token}`)
       .send({
-        latitude: -7.23432,
-        longitude: 32.4342,
+        userLatitude: -7.23432,
+        userLongitude: 32.4342,
       })
       .expect(201)
   })
