@@ -24,6 +24,8 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+      - name: Prisma Generate
+        run: npx prisma generate
       - run: npm run test:e2e
         env:
           JWT_SECRET: testing
