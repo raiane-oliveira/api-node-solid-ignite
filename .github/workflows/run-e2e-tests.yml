@@ -24,7 +24,7 @@ jobs:
           cache: 'npm'
       - uses: docker-practice/actions-setup-docker@master
 
-      - run: docker compose up
+      - run: docker compose up -d
       - run: npm ci
       - run: npm run test:e2e
         env:
