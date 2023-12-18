@@ -6,15 +6,15 @@ jobs:
     name: Run E2E Tests
     runs-on: ubuntu-latest
 
-    # services:
-    #   postgres:
-    #     image: bitnami/postgresql
-    #     ports:
-    #       - 5432:5432
-    #     environment:
-    #       - POSTGRESQL_USERNAME=docker
-    #       - POSTGRESQL_PASSWORD=docker
-    #       - POSTGRESQL_DATABASE=api-node-solid-db
+    services:
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: api-node-solid-db
 
     steps:
       - uses: actions/checkout@v3
@@ -22,9 +22,7 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-      - uses: docker-practice/actions-setup-docker@master
 
-      - run: docker compose up -d
       - run: npm ci
       - run: npm run test:e2e
         env:
